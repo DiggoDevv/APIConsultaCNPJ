@@ -24,8 +24,14 @@ namespace APIConsultaCNPJ.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult> Register(UserDto request)
+        public async Task<ActionResult> Register([FromBody] UserDto request)
         {
+            // Verifica se o modelo é válido
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             if (await _context.Users.AnyAsync(u => u.Email == request.Email))
                 return BadRequest("User already exists.");
 
@@ -45,8 +51,14 @@ namespace APIConsultaCNPJ.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<UserResponseDto>> Login(LoginDto request)
+        public async Task<ActionResult<UserResponseDto>> Login([FromBody] LoginDto request)
         {
+            // Verifica se o modelo é válido
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
             if (user == null) return BadRequest("User not found.");
 
