@@ -5,24 +5,25 @@
 namespace APIConsultaCNPJ.Migrations
 {
     /// <inheritdoc />
-    public partial class AjusteTabelaCliente : Migration
+    public partial class AddUserIdToEmpresa : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
-                name: "Senha",
-                table: "Users",
-                newName: "Password");
+            migrationBuilder.AddColumn<int>(
+                name: "UserId",
+                table: "Empresas",
+                type: "int",
+                nullable: false,
+                defaultValue: 0);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
-                name: "Password",
-                table: "Users",
-                newName: "Senha");
+            migrationBuilder.DropColumn(
+                name: "UserId",
+                table: "Empresas");
         }
     }
 }

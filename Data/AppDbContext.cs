@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using APIConsultaCNPJ.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace APIConsultaCNPJ.Data
 {
@@ -7,6 +8,7 @@ namespace APIConsultaCNPJ.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
-        public DbSet<Models.UserModel> Users { get; set; } = null!;
+        public DbSet<EmpresaModel> Empresas { get; set; }
+        public DbSet<UserModel> Users { get; set; } = null!;
     }
 }
